@@ -53,4 +53,48 @@ class ApiCategoryController extends Controller
             ], 404);
         }
     }
+
+    public function update(Request $request, $id){
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+
+        $category = Category::find($id);
+        $category->name = $request->name;
+        $category->description = $request->description;
+
+        if($category->save()){
+            return response()->json([
+                'success' => true,
+                'message' => 'Update category Successfull!',
+                'data' => $category
+            ], 200);
+        }else{
+            return response()->json([
+                'success' => false,
+                'message' => 'Category fail to update',
+                'data' => ''
+            ], 404);
+        }
+    }
+
+    public function destroy($id){
+        $category = Category::find($id);
+
+        if($category->delete()){
+            return response()->json([
+                'success' => true,
+                'message' => 'delete category Successfull!',
+                'data' => $category
+            ], 200);
+        }else{
+            return response()->json([
+                'success' => false,
+                'message' => 'Category fail to delete',
+                'data' => ''
+            ], 404);
+        }
+    }
+
 }

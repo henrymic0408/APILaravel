@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Spatie\FlareClient\Api;
 use App\Http\Controllers\API\ApiCategoryController;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //route api
 Route::apiResource('category', ApiCategoryController::class);
+Route::apiResource('product', App\Http\Controllers\API\ApiProductController::class);
